@@ -1,93 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privatelink - Secure Tools</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-</head>
-<body>
+document.addEventListener('DOMContentLoaded', () => {
 
-    <div id="login-page" class="page active">
-        <div class="login-container">
-            <header class="project-header">
-                <img src="https://i.ibb.co/9gXyT1R/logo.png" alt="Privatelink Logo" class="logo">
-                <h1>Privatelink</h1>
-            </header>
-            <div class="login-box">
-                <h2>Masuk untuk Melanjutkan</h2>
-                <p>Gunakan akun Google Anda untuk mengakses tools.</p>
-                <form id="login-form">
-                    <div class="input-group">
-                        <label for="account-name">Nama Akun</label>
-                        <input type="text" id="account-name" placeholder="cth: Project Alpha" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="google-account">Akun Google</label>
-                        <input type="email" id="google-account" placeholder="cth: user@gmail.com" required>
-                    </div>
-                    <button type="submit" class="cta-button">
-                        <img src="https://i.ibb.co/1nC1yQ7/google-icon.png" alt="Google Icon" class="google-icon">
-                        <span>Login dengan Google</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </div>
+    // ===== ELEMEN YANG DIBUTUHKAN =====
+    const pages = document.querySelectorAll('.page');
+    const loginForm = document.getElementById('login-form');
+    const displayAccountName = document.getElementById('display-account-name');
+    const logoutButton = document.getElementById('logout-button');
+    const backButtons = document.querySelectorAll('.back-button');
 
-    <div id="main-menu-page" class="page">
-        <nav class="main-nav">
-            <div class="nav-logo">
-                <img src="https://i.ibb.co/9gXyT1R/logo.png" alt="Privatelink Logo" class="logo-small">
-                <span>Privatelink</span>
-            </div>
-            <div id="user-info">
-                <span id="display-account-name"></span>
-                <button id="logout-button" class="logout-btn">Logout</button>
-            </div>
-        </nav>
-        <main class="main-content">
-            <h2>Pilih Alat Anda</h2>
-            <div class="tools-grid">
-                <div class="tool-card" id="show-hash-tool">
-                    <h3>Generate Hash</h3>
-                    <p>Buat hash aman dari teks atau file Anda.</p>
-                </div>
-                <div class="tool-card" id="show-embed-tool">
-                    <h3>Sisipkan Pesan</h3>
-                    <p>Sembunyikan pesan rahasia di dalam gambar.</p>
-                </div>
-            </div>
-        </main>
-    </div>
+    // Tombol untuk menampilkan tools
+    const showHashToolBtn = document.getElementById('show-hash-tool');
+    const showEmbedToolBtn = document.getElementById('show-embed-tool');
 
-    <div id="hash-tool-page" class="page tool-page">
-        <button class="back-button">← Kembali ke Menu</button>
-        <h2>Tool: Generate Hash</h2>
-        <div class="tool-container">
-            <textarea id="hash-input" placeholder="Masukkan teks di sini..."></textarea>
-            <select id="hash-algorithm">
-                <option value="SHA-256">SHA-256</option>
-                <option value="SHA-512">SHA-512</option>
-                <option value="MD5">MD5 (Kurang Aman)</option>
-            </select>
-            <button id="generate-hash-btn" class="cta-button-small">Generate</button>
-            <div class="result-box">
-                <h4>Hasil Hash:</h4>
-                <p id="hash-output"></p>
-            </div>
-        </div>
-    </div>
+    // Elemen Tool Hash
+    const generateHashBtn = document.getElementById('generate-hash-btn');
+    const hashInput = document.getElementById('hash-input');
+    const hashOutput = document.getElementById('hash-output');
+    const hashAlgorithm = document.getElementById('hash-algorithm');
 
-    <div id="embed-tool-page" class="page tool-page">
-        <button class="back-button">← Kembali ke Menu</button>
-        <h2>Tool: Sisipkan Pesan ke Gambar</h2>
-         <div class="tool-container">
-            <p>Fitur ini sedang dalam pengembangan.</p>
-            </div>
-    </div>
+    // ===== FUNGSI UNTUK NAVIGASI HALAMAN =====
+    function showPage(pageId) {
+        pages.forEach(page => {
+            page.classList.remove('active');
+        });
+        document.getElementById(pageId).classList.add('active');
+    }
 
-    <script src="script.js"></script>
-</body>
-</html>
+    // ===== LOGIKA LOGIN & LOGOUT =====
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault(); // Mencegah form reload halaman
+        const accountName = document.getElementById('account-name').value;
+        displayAccountName.textContent = accountName; // Tampilkan nama akun di nav
+        showPage('main-menu-page'); // Pindah ke halaman menu utama
+    });
+
+    logoutButton.addEventListener('click', () => {
+        loginForm.reset(); // Kosongkan form login
+        showPage('login-page'); // Kembali ke halaman login
+    });
+
+    // ===== NAVIGASI MENU UTAMA KE TOOLS =====
+    showHashToolBtn.addEventListener('click', () => showPage('hash-tool-page'));
+    showEmbedToolBtn.addEventListener('click', () => showPage('embed-tool-page'));
+
+    // Fungsi tombol kembali di setiap tool
+    backButtons.forEach(button => {
+        button.addEventListener('click', () => showPage('main-menu-page'));
+    });
+
+    // ===== FUNGSI TOOL GENERATE HASH =====
+    generateHashBtn.addEventListener('click', async () => {
+        const text = hashInput.value;
+        const algorithm = hashAlgorithm.value;
+
+        if (!text) {
+            hashOutput.textContent = "Silakan masukkan teks terlebih dahulu.";
+            return;
+        }
+
+        try {
+            const encoder = new TextEncoder();
+            const data = encoder.encode(text);
+            const hashBuffer = await crypto.subtle.digest(algorithm, data);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            hashOutput.textContent = hashHex;
+        } catch (error) {
+            hashOutput.textContent = `Error: ${error.message}`;
+        }
+    });
+
+    // Inisialisasi: Tampilkan halaman login saat pertama kali dibuka
+    showPage('login-page');
+});
