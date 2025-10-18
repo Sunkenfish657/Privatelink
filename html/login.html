@@ -1,1 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
 
+  <!-- Menentukan encoding karakter agar teks tampil benar -->
+  <meta charset="UTF-8">
+  
+  <!-- Membuat tampilan responsive di berbagai ukuran layar -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Judul halaman yang muncul di tab browser -->
+  <title>Login - Secure Portal</title>
+  
+  <!-- Menghubungkan file CSS eksternal untuk styling -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- fungsi untuk menampilkan tombol login Google dan memproses hasil autentikasi pengguna. -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+
+
+<body>
+
+  <!-- Container utama untuk tampilan login -->
+  <div class="login-container">
+    <h2>Masuk dengan Google</h2>
+
+    <!-- Elemen tempat tombol login Google akan dirender secara otomatis
+      oleh kode JavaScript di login.js -->
+    <div id="g_id_signin"></div>
+  </div>
+
+
+  <!-- File JavaScript yang mengatur login -->
+  <script src="js/login.js"></script>
+
+</body>
+</html>
