@@ -1,63 +1,93 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu Utama - Privatelink</title>
-  <link rel="stylesheet" href="css/style.css">
-
-  <!-- (Opsional) Ikon di tab browser -->
-  <!-- <link rel="icon" href="assets/icon.png"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privatelink - Secure Tools</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
 </head>
-
 <body>
-  <!-- =========================
-       HEADER / NAVBAR
-  ========================== -->
-  <header class="navbar">
-    <h1>🔒 Privatelink</h1>
-      <button id="logout-btn">Logout</button>
+
+    <div id="login-page" class="page active">
+        <div class="login-container">
+            <header class="project-header">
+                <img src="https://i.ibb.co/9gXyT1R/logo.png" alt="Privatelink Logo" class="logo">
+                <h1>Privatelink</h1>
+            </header>
+            <div class="login-box">
+                <h2>Masuk untuk Melanjutkan</h2>
+                <p>Gunakan akun Google Anda untuk mengakses tools.</p>
+                <form id="login-form">
+                    <div class="input-group">
+                        <label for="account-name">Nama Akun</label>
+                        <input type="text" id="account-name" placeholder="cth: Project Alpha" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="google-account">Akun Google</label>
+                        <input type="email" id="google-account" placeholder="cth: user@gmail.com" required>
+                    </div>
+                    <button type="submit" class="cta-button">
+                        <img src="https://i.ibb.co/1nC1yQ7/google-icon.png" alt="Google Icon" class="google-icon">
+                        <span>Login dengan Google</span>
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
-  </header>
 
-  <!-- =========================
-       MENU UTAMA
-  ========================== -->
-<main class="main-container">
-  <p>Beberapa menu yang akan ditambahkan:</p>
+    <div id="main-menu-page" class="page">
+        <nav class="main-nav">
+            <div class="nav-logo">
+                <img src="https://i.ibb.co/9gXyT1R/logo.png" alt="Privatelink Logo" class="logo-small">
+                <span>Privatelink</span>
+            </div>
+            <div id="user-info">
+                <span id="display-account-name"></span>
+                <button id="logout-button" class="logout-btn">Logout</button>
+            </div>
+        </nav>
+        <main class="main-content">
+            <h2>Pilih Alat Anda</h2>
+            <div class="tools-grid">
+                <div class="tool-card" id="show-hash-tool">
+                    <h3>Generate Hash</h3>
+                    <p>Buat hash aman dari teks atau file Anda.</p>
+                </div>
+                <div class="tool-card" id="show-embed-tool">
+                    <h3>Sisipkan Pesan</h3>
+                    <p>Sembunyikan pesan rahasia di dalam gambar.</p>
+                </div>
+            </div>
+        </main>
+    </div>
 
-  <div class="menu-grid">
-    <!-- Mode Otomatis -->
-    <button class="menu-card" onclick="bukaHalaman('otomatis.html')">
-      ⚙️ Mode Otomatis
-      <p>Unggah 2 file dan sandi enkripsi — sistem akan mengerjakan semuanya.</p>
-    </button>
+    <div id="hash-tool-page" class="page tool-page">
+        <button class="back-button">← Kembali ke Menu</button>
+        <h2>Tool: Generate Hash</h2>
+        <div class="tool-container">
+            <textarea id="hash-input" placeholder="Masukkan teks di sini..."></textarea>
+            <select id="hash-algorithm">
+                <option value="SHA-256">SHA-256</option>
+                <option value="SHA-512">SHA-512</option>
+                <option value="MD5">MD5 (Kurang Aman)</option>
+            </select>
+            <button id="generate-hash-btn" class="cta-button-small">Generate</button>
+            <div class="result-box">
+                <h4>Hasil Hash:</h4>
+                <p id="hash-output"></p>
+            </div>
+        </div>
+    </div>
 
-    <!-- Tools Lengkap -->
-    <button class="menu-card" onclick="bukaHalaman('menu-tools.html')">
-      🛠️ Tools Lengkap
-      <p>Akses semua fitur seperti hash generator, enkripsi, dan penyisipan CID secara manual.</p>
-    </button>
+    <div id="embed-tool-page" class="page tool-page">
+        <button class="back-button">← Kembali ke Menu</button>
+        <h2>Tool: Sisipkan Pesan ke Gambar</h2>
+         <div class="tool-container">
+            <p>Fitur ini sedang dalam pengembangan.</p>
+            </div>
+    </div>
 
-    <!-- IPFS management -->
-    <button class="menu-card" onclick="bukaHalaman('ipfs.html')">
-      🌐 IPFS
-      <p>Lihat file di Pinata, hapus, atau periksa status penyimpanan.</p>
-    </button>
-  </div>
-</main>
-
-  <!-- =========================
-       SCRIPT
-  ========================== -->
-
-<script>
-  // Fungsi untuk berpindah ke halaman lain
-  function bukaHalaman(path) {
-    window.location.href = path;
-  }
-</script>
-
-  <script src="js/main.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
