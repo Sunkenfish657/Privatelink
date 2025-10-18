@@ -1,1 +1,45 @@
 
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tools - Privatelink</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="navbar">
+    <h1>🛠️ Tools Lengkap</h1>
+    <button onclick="window.location.href='../menu-utama.html'">Kembali</button>
+  </header>
+
+  <main class="main-container">
+    <h2>Hash Generator (SHA-256)</h2>
+    
+    <label for="text-input">Masukkan teks:</label>
+    <textarea id="text-input" rows="4" cols="50"></textarea><br><br>
+
+    <button id="generate-btn">Generate Hash</button>
+
+    <h3>Hasil Hash:</h3>
+    <textarea id="hash-output" rows="4" cols="70" readonly></textarea>
+  </main>
+
+  <script>
+    async function generateHash() {
+      const text = document.getElementById('text-input').value;
+      const encoder = new TextEncoder();
+      const data = encoder.encode(text);
+
+      // Hitung SHA-256
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      
+      document.getElementById('hash-output').value = hashHex;
+    }
+
+    document.getElementById('generate-btn').addEventListener('click', generateHash);
+  </script>
+</body>
+</html>
