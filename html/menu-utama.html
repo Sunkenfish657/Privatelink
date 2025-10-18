@@ -33,11 +33,13 @@
         <p>Unggah 2 file dan sandi enkripsi — sistem akan mengerjakan semuanya.</p>
       </div>
 
-      <!-- Tools -->
-      <div class="menu-card" onclick="bukaHalaman('manual.html')">
-        <h3>🧩 Mode Manual</h3>
-        <p>Gunakan fitur terpisah seperti hash, enkripsi, dan penyisipan CID.</p>
-      </div>
+      <!-- Tools Lengkap -->
+<div class="menu-card" onclick="bukaHalaman('html/menu-tools.html')">
+  <h3>🛠️ Tools Lengkap</h3>
+  <p>Akses semua fitur seperti hash generator, enkripsi, dan penyisipan CID secara manual.</p>
+</div>
+</div>
+
 
       <!-- IPFS management -->
       <div class="menu-card" onclick="bukaHalaman('ipfs.html')">
@@ -50,6 +52,14 @@
   <!-- =========================
        SCRIPT
   ========================== -->
+
+<script>
+  // Fungsi untuk berpindah ke halaman lain
+  function bukaHalaman(path) {
+    window.location.href = path;
+  }
+</script>
+
   <script src="js/main.js"></script>
 </body>
 </html>
