@@ -7,4 +7,3 @@ Website futuristik untuk memperkenalkan konsep kepemilikan digital berbasis bloc
 - `assets/css/styles.css` — Gaya kustom
 - `assets/js/main.js` — Logika interaktif modal
 
-Dibangun dengan TailwindCSS via CDN. Tidak memerlukan build tools.
