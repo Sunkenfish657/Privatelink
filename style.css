@@ -1,0 +1,62 @@
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0d1117;
+  color: #e5e7eb;
+}
+
+/* Cards & Buttons */
+.futuristic-card {
+  background-color: #161b22;
+  border: 1px solid #2d333b;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.futuristic-card:hover {
+  border-color: #06b6d4;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+  transform: translateY(-2px);
+}
+
+.neon-button {
+  background: #06b6d4;
+  color: #0d1117;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.neon-button:hover {
+  background: #22d3ee;
+  box-shadow: 0 0 25px rgba(34, 211, 238, 0.7);
+}
+
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+}
+
+/* Tabs, labels, etc. */
+.file-label {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  background-color: #1e293b;
+  color: #94a3b8;
+  border-radius: 0.5rem;
+  border: 1px solid #334155;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.file-label:hover {
+  background-color: #334155;
+  color: #06b6d4;
+}
+
+.main-cta-stego {
+  background-color: #06b6d4;
+  color: #0d1117;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.main-cta-stego:hover {
+  background-color: #22d3ee;
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
+}
