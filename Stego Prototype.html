@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private Link — Stego Prototype</title>
+    <!-- Memuat Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #e5e7eb;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        .container {
+            width: 100%;
+            max-width: 500px;
+        }
+        .tab-button {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        /* Custom styling untuk tombol file input */
+        .file-label {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1.25rem;
+            background-color: #1e293b; /* Warna latar belakang tombol */
+            color: #94a3b8; /* Warna teks tombol */
+            border-radius: 0.5rem;
+            border: 1px solid #334155;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .file-label:hover {
+            background-color: #334155;
+            color: #06b6d4;
+        }
+        .main-cta-stego {
+            background-color: #06b6d4;
+            color: #0d1117;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .main-cta-stego:hover {
+            background-color: #22d3ee;
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.5);
+        }
+        /* Tab aktif */
+        .tab-active {
+            background-color: #083344;
+            color: #22d3ee;
+            border-bottom: 3px solid #06b6d4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container bg-[#161b22] p-6 rounded-xl shadow-2xl shadow-cyan-900/20">
+        
+        <!-- Tombol Kembali ke Halaman Utama -->
+        <a href="index.html" class="inline-flex items-center text-gray-400 hover:text-cyan-400 transition mb-6">
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            Kembali ke Beranda
+        </a>
+
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-extrabold tracking-tight">
+                <span class="text-white">Private Link</span>
+                <span class="text-cyan-400">— Stego Prototype</span>
+            </h1>
+            <p class="text-gray-400 text-sm mt-2">
+                Gabungkan uploader IPFS (Pinata) & LSB stego. Hanya prototype.
+            </p>
+        </header>
+
+        <!-- Tab Navigation -->
+        <div class="flex border-b border-gray-700 mb-6 rounded-lg overflow-hidden">
+            <div id="create-tab-btn" class="tab-button flex-1 text-center py-3 px-4 tab-active">
+                <span class="flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    Buat Stego (Create)
+                </span>
+            </div>
+            <div id="reveal-tab-btn" class="tab-button flex-1 text-center py-3 px-4 bg-[#1e293b] text-gray-400 font-semibold">
+                <span class="flex items-center justify-center">
+                    <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    Dekripsi / Reveal
+                </span>
+            </div>
+        </div>
+
+        <!-- Create Tab Content -->
+        <div id="create-content" class="space-y-6">
+            <div class="space-y-4">
+                <label class="text-base font-medium block">1) Pilih file asli (private/original)</label>
+                <div class="flex items-center space-x-3">
+                    <label for="file-private" class="file-label">Pilih File</label>
+                    <input type="file" id="file-private" class="hidden" onchange="displayFileName('file-private', 'file-private-name')">
+                    <span id="file-private-name" class="text-gray-500 text-sm">Tidak ada file yang dipilih</span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <label class="text-base font-medium block">2) Pilih file publik (cover)</label>
+                <div class="flex items-center space-x-3">
+                    <label for="file-public" class="file-label">Pilih File</label>
+                    <input type="file" id="file-public" class="hidden" onchange="displayFileName('file-public', 'file-public-name')">
+                    <span id="file-public-name" class="text-gray-500 text-sm">Tidak ada file yang dipilih</span>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <label for="jwt-input" class="text-base font-medium block">3) Pinata JWT (untuk prototype)</label>
+                <input type="text" id="jwt-input" placeholder="Masukkan JWT Pinata" class="w-full bg-[#1e293b] border border-gray-700 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500">
+            </div>
+
+            <button onclick="simulateCreateStego()" class="main-cta-stego w-full py-4 rounded-lg text-lg tracking-wider">
+                Upload & Embed CID → Download Stego
+            </button>
+        </div>
+
+        <!-- Reveal Tab Content (Hidden by default) -->
+        <div id="reveal-content" class="space-y-6 hidden">
+            <h3 class="text-xl font-semibold mb-4">Upload stego image</h3>
+            <div class="space-y-4">
+                <label class="text-base font-medium block">File stego (gambar publik dengan CID)</label>
+                <div class="flex items-center space-x-3">
+                    <label for="file-stego" class="file-label">Pilih File</label>
+                    <input type="file" id="file-stego" class="hidden" onchange="displayFileName('file-stego', 'file-stego-name-reveal')">
+                    <span id="file-stego-name-reveal" class="text-gray-500 text-sm">Tidak ada file yang dipilih</span>
+                </div>
+            </div>
+            
+            <button onclick="simulateRevealStego()" class="main-cta-stego w-full py-4 rounded-lg text-lg tracking-wider">
+                Extract CID
+            </button>
+            
+            <label class="text-base font-medium block mt-6">Progress ekstraksi</label>
+            <div class="w-full h-2 bg-gray-700 rounded-full overflow-hidden">
+                <div id="progress-bar" class="h-full bg-cyan-500 transition-all duration-500" style="width: 0%;"></div>
+            </div>
+        </div>
+        
+        <!-- Log / Status Area (Shared) -->
+        <div class="mt-8 pt-4 border-t border-gray-700">
+            <h3 class="text-lg font-semibold mb-2">Log / Status</h3>
+            <div id="log-status" class="bg-[#1e293b] p-3 rounded-lg h-16 overflow-y-auto text-gray-400 text-sm">
+                Idle.
+            </div>
+        </div>
+
+        <!-- Footer Warning -->
+        <footer class="text-center mt-8 text-gray-500 text-xs">
+            Prototype — jangan taruh kunci di repo publik.
+        </footer>
+
+    </div>
+
+    <script>
+        // --- JavaScript untuk Logika Aplikasi Prototipe ---
+
+        // Referensi Elemen
+        const createTabBtn = document.getElementById('create-tab-btn');
+        const revealTabBtn = document.getElementById('reveal-tab-btn');
+        const createContent = document.getElementById('create-content');
+        const revealContent = document.getElementById('reveal-content');
+        const logStatus = document.getElementById('log-status');
+        const progressBar = document.getElementById('progress-bar');
+        
+        // Logika Tab Switching
+        function switchTab(tabId) {
+            // Reset state
+            createTabBtn.classList.remove('tab-active', 'bg-[#1e293b]');
+            revealTabBtn.classList.remove('tab-active', 'bg-[#1e293b]');
+            createTabBtn.classList.remove('text-gray-400');
+            revealTabBtn.classList.remove('text-gray-400');
+
+            createContent.classList.add('hidden');
+            revealContent.classList.add('hidden');
+            
+            // Activate selected tab
+            if (tabId === 'create') {
+                createTabBtn.classList.add('tab-active');
+                revealTabBtn.classList.add('bg-[#1e293b]', 'text-gray-400');
+                createContent.classList.remove('hidden');
+            } else {
+                revealTabBtn.classList.add('tab-active');
+                createTabBtn.classList.add('bg-[#1e293b]', 'text-gray-400');
+                revealContent.classList.remove('hidden');
+            }
+            updateLog('Beralih ke tab ' + tabId.toUpperCase() + '.');
+        }
+
+        // Event Listeners untuk Tab
+        createTabBtn.addEventListener('click', () => switchTab('create'));
+        revealTabBtn.addEventListener('click', () => switchTab('reveal'));
+        
+        // Logika Menampilkan Nama File
+        function displayFileName(inputId, spanId) {
+            const input = document.getElementById(inputId);
+            const span = document.getElementById(spanId);
+            if (input.files.length > 0) {
+                span.textContent = input.files[0].name;
+                span.classList.remove('text-gray-500');
+                span.classList.add('text-cyan-400');
+            } else {
+                span.textContent = 'Tidak ada file yang dipilih';
+                span.classList.add('text-gray-500');
+                span.classList.remove('text-cyan-400');
+            }
+        }
+        
+        // Logika Update Status
+        function updateLog(message) {
+            const now = new Date().toLocaleTimeString('id-ID', { hour12: false });
+            // Batasi jumlah log untuk performa
+            const maxLogs = 5;
+            let logHtml = `<p class="text-cyan-300">[${now}] ${message}</p>`;
+            
+            // Ambil log yang ada dan tambahkan yang baru
+            const existingLogs = logStatus.getElementsByTagName('p');
+            for(let i = 0; i < existingLogs.length && i < maxLogs - 1; i++) {
+                logHtml += existingLogs[i].outerHTML;
+            }
+
+            logStatus.innerHTML = logHtml;
+        }
+
+        // Simulasikan Proses Pembuatan Stego (Create)
+        function simulateCreateStego() {
+            const filePrivate = document.getElementById('file-private').files[0];
+            const filePublic = document.getElementById('file-public').files[0];
+            const jwtInput = document.getElementById('jwt-input').value;
+
+            if (!filePrivate || !filePublic || !jwtInput) {
+                updateLog('<span class="text-red-400">Error:</span> Harap lengkapi semua input file dan JWT Pinata.');
+                return;
+            }
+
+            updateLog(`Memulai proses: Private(${filePrivate.name}), Cover(${filePublic.name})`);
+
+            // Simulasi Langkah 1: Upload ke Pinata
+            setTimeout(() => {
+                updateLog('<span class="text-yellow-400">Status:</span> Upload file private ke IPFS Pinata...');
+                // CID palsu
+                const fakeCID = 'Qmbd' + Math.random().toString(36).substring(2, 10) + 'Xyz';
+
+                // Simulasi Langkah 2: Steganografi LSB
+                setTimeout(() => {
+                    updateLog('<span class="text-yellow-400">Status:</span> Menyematkan CID (' + fakeCID + ') ke file publik menggunakan LSB...');
+                    
+                    // Simulasi Langkah 3: Selesai & Download
+                    setTimeout(() => {
+                        updateLog('<span class="text-green-400">Sukses:</span> File stego siap. Silakan klik download. (Simulasi selesai)');
+                        // Dalam aplikasi nyata, ini akan memicu download file stego
+                    }, 1500);
+
+                }, 2000);
+
+            }, 1500);
+        }
+
+        // Simulasikan Proses Dekripsi Stego (Reveal)
+        function simulateRevealStego() {
+            const fileStego = document.getElementById('file-stego').files[0];
+            
+            if (!fileStego) {
+                updateLog('<span class="text-red-400">Error:</span> Harap pilih file stego untuk diekstrak.');
+                return;
+            }
+
+            updateLog(`Memulai ekstraksi CID dari file: ${fileStego.name}`);
+            progressBar.style.width = '0%';
+
+            // Simulasi Progress Bar
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += 20;
+                progressBar.style.width = progress + '%';
+                updateLog(`Ekstraksi... ${progress}%`);
+
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    // CID yang diekstrak (palsu)
+                    const extractedCID = 'Qmbd87c2f689Xyz'; 
+                    
+                    updateLog('<span class="text-green-400">Sukses:</span> CID diekstrak: ' + extractedCID);
+                    updateLog('<span class="text-green-400">Sukses:</span> File private siap diunduh dari IPFS.');
+                }
+            }, 500);
+        }
+
+        // Inisialisasi: Pastikan tab 'create' aktif saat pertama kali dimuat
+        window.onload = () => {
+             switchTab('create');
+        }
+
+    </script>
+</body>
+</html>

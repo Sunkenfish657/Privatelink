@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLOCKCHAIN NFT - Private Link</title>
+    <!-- Memuat Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Menggunakan font Inter untuk tampilan modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Mengatur font utama dan background sangat gelap */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117; /* Darker than black, similar to deep space */
+            color: #e5e7eb; /* Light text */
+        }
+        /* Styling untuk efek glow/futuristik pada batas elemen */
+        .futuristic-card {
+            background-color: #161b22;
+            border: 1px solid #2d333b;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+        }
+        .futuristic-card:hover {
+            border-color: #06b6d4; /* Neon Cyan hover */
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+            transform: translateY(-2px);
+        }
+        /* Efek khusus untuk tombol aksi utama */
+        .neon-button {
+            transition: all 0.3s ease;
+            background: #06b6d4;
+            color: #0d1117;
+            font-weight: 700;
+        }
+        .neon-button:hover {
+            background: #22d3ee;
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.7);
+        }
+        /* Styling untuk garis pemisah minimalis */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+        }
+    </style>
+</head>
+<body class="min-h-screen antialiased">
+
+    <!-- Navbar Minimalis -->
+    <header class="sticky top-0 z-50 bg-[#0d1117]/90 backdrop-blur-sm shadow-xl shadow-black/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-extrabold tracking-wider">
+                <span class="text-white">Private</span><span class="text-cyan-400"> Link</span>
+            </a>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#tentang" class="text-gray-400 hover:text-cyan-400 transition">Tentang</a>
+                <a href="#fitur" class="text-gray-400 hover:text-cyan-400 transition">Fitur Utama</a>
+                <a href="#projek" class="text-gray-400 hover:text-cyan-400 transition font-bold">Projek Kami</a>
+                <a href="#ekosistem" class="text-gray-400 hover:text-cyan-400 transition">Ekosistem</a>
+            </nav>
+            <button class="md:hidden text-gray-400 hover:text-cyan-400 transition">
+                <!-- Ikon Menu Hamburger Sederhana (SVG inline) -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <!-- Bagian 1: Hero Section (Futuristik & Bold) -->
+        <section class="relative pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <!-- Garis Aksen Vertikal (Minimalis) -->
+                <div class="w-1 h-12 bg-cyan-500 mx-auto mb-6 rounded-full"></div>
+
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 leading-tight">
+                    Masa Depan Kepemilikan Digital <br class="hidden sm:inline">
+                    di Era <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-500">Blockchain</span>
+                </h1>
+                <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-8">
+                    Non-Fungible Tokens (NFT) merevolusi cara kita mendefinisikan dan mentransfer aset. Temukan ekosistem yang terdesentralisasi, aman, dan transparan.
+                </p>
+                <a href="#projek" class="neon-button inline-block px-10 py-3 rounded-full text-lg shadow-cyan-500/50">
+                    Pelajari Projek Kami
+                </a>
+            </div>
+            <!-- Efek Visual (Hanya untuk estetika futuristik) -->
+            <div class="absolute inset-0 z-[-1] opacity-10">
+                <div class="w-96 h-96 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 absolute top-0 left-0 animate-pulse"></div>
+                <div class="w-96 h-96 bg-sky-500 rounded-full mix-blend-multiply filter blur-3xl opacity-30 absolute bottom-0 right-0 animate-pulse delay-500"></div>
+            </div>
+        </section>
+
+        <!-- Garis Pemisah Minimalis -->
+        <div class="max-w-5xl mx-auto px-4 my-10"><div class="divider"></div></div>
+
+        <!-- Bagian 2: Tentang Blockchain & NFT -->
+        <section id="tentang" class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-5xl font-bold text-center mb-12">
+                    Apa itu <span class="text-cyan-400">NFT</span> dan Blockchain?
+                </h2>
+
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Card 1: Blockchain -->
+                    <div class="futuristic-card p-6 md:p-8 rounded-xl">
+                        <span class="text-cyan-400 text-3xl font-bold mb-3 block">01</span>
+                        <h3 class="text-2xl font-semibold mb-3">Blockchain: Buku Besar Digital</h3>
+                        <p class="text-gray-400">
+                            Teknologi yang mendasari mata uang kripto. Ini adalah sistem pencatatan transaksi yang terdesentralisasi dan didistribusikan, di mana data disimpan dalam "blok" yang saling terhubung dan diamankan secara kriptografis. Hal ini menjamin transparansi, imutabilitas (tidak dapat diubah), dan kepercayaan tanpa perlu perantara.
+                        </p>
+                    </div>
+
+                    <!-- Card 2: NFT -->
+                    <div class="futuristic-card p-6 md:p-8 rounded-xl">
+                        <span class="text-cyan-400 text-3xl font-bold mb-3 block">02</span>
+                        <h3 class="text-2xl font-semibold mb-3">NFT: Bukti Kepemilikan Unik</h3>
+                        <p class="text-gray-400">
+                            Non-Fungible Token adalah aset digital unik yang tidak dapat dipertukarkan. Setiap NFT memiliki kode identifikasi dan metadata yang unik, menjadikannya bukti kepemilikan definitif atas suatu item (karya seni, koleksi, properti virtual) di blockchain. NFT adalah cara untuk menokensisasi aset nyata atau digital.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian 3: Fitur Utama (Grid Minimalis) -->
+        <section id="fitur" class="py-16 md:py-24 bg-[#12161f]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-5xl font-bold text-center mb-16">
+                    Keunggulan <span class="text-sky-400">Sistem</span> Blockchain NFT
+                </h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature Card 1: Imutabilitas -->
+                    <div class="futuristic-card p-6 rounded-xl text-center">
+                        <!-- Icon (Inline SVG - Minimalis) -->
+                        <svg class="w-10 h-10 text-cyan-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-2 4h4m-7-19h14a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V4a2 2 0 012-2z"></path></svg>
+                        <h4 class="text-xl font-semibold mb-2">Imutabilitas Data</h4>
+                        <p class="text-gray-400 text-sm">
+                            Setelah data dicatat di blockchain, data tersebut tidak dapat diubah atau dihapus, menjamin catatan kepemilikan yang permanen.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 2: Transparansi -->
+                    <div class="futuristic-card p-6 rounded-xl text-center">
+                        <!-- Icon (Inline SVG - Minimalis) -->
+                        <svg class="w-10 h-10 text-cyan-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                        <h4 class="text-xl font-semibold mb-2">Audit Terbuka</h4>
+                        <p class="text-gray-400 text-sm">
+                            Semua transaksi dan riwayat kepemilikan dapat diverifikasi oleh siapa saja di jaringan, memastikan transparansi penuh.
+                        </p>
+                    </div>
+
+                    <!-- Feature Card 3: Desentralisasi -->
+                    <div class="futuristic-card p-6 rounded-xl text-center">
+                        <!-- Icon (Inline SVG - Minimalis) -->
+                        <svg class="w-10 h-10 text-cyan-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-1.343 3-3s-1.343-3-3-3m0 6v-6"></path></svg>
+                        <h4 class="text-xl font-semibold mb-2">Tanpa Perantara</h4>
+                        <p class="text-gray-400 text-sm">
+                            Transaksi terjadi secara *peer-to-peer* (langsung), menghilangkan kebutuhan akan otoritas pusat atau pihak ketiga.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Bagian 4: Projek Private Link: Steganografi NFT -->
+        <section id="projek" class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl md:text-5xl font-bold text-center mb-16">
+                    Projek <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-500">Private Link</span>: NFT dengan Steganografi
+                </h2>
+
+                <div class="futuristic-card p-8 md:p-12 rounded-xl border-cyan-700/50">
+                    <div class="grid md:grid-cols-5 gap-8 items-center">
+                        <div class="md:col-span-3">
+                            <h3 class="text-2xl md:text-3xl font-bold mb-4 text-cyan-400">
+                                Menyembunyikan Data dalam Seni Digital
+                            </h3>
+                            <p class="text-gray-300 mb-4">
+                                Steganografi adalah seni dan ilmu menyembunyikan pesan rahasia di dalam pesan atau objek lain. Private Link memanfaatkan teknik ini untuk memberikan tingkat keamanan dan privasi yang tak tertandingi pada aset NFT Anda.
+                            </p>
+                            <p class="text-gray-400 mb-6 border-l-4 border-cyan-500 pl-3 italic text-sm">
+                                Data rahasia (seperti kunci pribadi, *private access link*, atau dokumen eksklusif) disematkan langsung ke dalam file visual NFT tanpa mengubah tampilan aslinya.
+                            </p>
+                            <a href="#ekosistem" class="neon-button inline-block px-6 py-2 rounded-full text-md">
+                                Lihat Kasus Penggunaan
+                            </a>
+                        </div>
+                        <div class="md:col-span-2 flex justify-center">
+                            <!-- Visualisasi Konsep (Inline SVG) -->
+                            <svg class="w-full max-w-sm h-auto text-sky-400" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="20" y="20" width="160" height="110" rx="10" stroke="currentColor" stroke-width="3" fill="#161b22"/>
+                                <!-- Ikon NFT/Image -->
+                                <circle cx="50" cy="50" r="15" fill="#06b6d4" opacity="0.8"/>
+                                <path d="M40 50h20M50 40v20" stroke="#0d1117" stroke-width="2"/>
+                                <text x="50" y="100" font-size="10" fill="#e5e7eb" text-anchor="middle">Aset NFT</text>
+
+                                <!-- Steganografi Arrow -->
+                                <path d="M80 65 Q 100 50 120 65" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrowhead)" opacity="0.9"/>
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee" />
+                                    </marker>
+                                </defs>
+                                <text x="100" y="55" font-size="10" fill="#e5e7eb" text-anchor="middle">Embed (Stegano)</text>
+
+                                <!-- Ikon Link Tersembunyi -->
+                                <rect x="135" y="80" width="30" height="30" rx="5" fill="#facc15" opacity="0.8"/>
+                                <path d="M140 90h20M140 95h20M140 100h20" stroke="#0d1117" stroke-width="1.5"/>
+                                <text x="150" y="125" font-size="10" fill="#e5e7eb" text-anchor="middle">Data Rahasia</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Garis Pemisah Minimalis -->
+        <div class="max-w-5xl mx-auto px-4 my-10"><div class="divider"></div></div>
+
+
+        <!-- Bagian 5: Ekosistem dan CTA -->
+        <section id="ekosistem" class="py-16 md:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl md:text-5xl font-bold mb-6">
+                    Bergabung dengan <span class="text-cyan-400">Ekosistem</span> NFT Global
+                </h2>
+                <p class="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto mb-10">
+                    Dari karya seni digital hingga real estate virtual, NFT membuka peluang baru bagi kreator, kolektor, dan investor. Ambil langkah pertama Anda menuju masa depan aset digital.
+                </p>
+
+                <!-- Simulasi Grid Marketplace Minimalis -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12">
+                    <div class="futuristic-card p-3 rounded-lg flex flex-col items-center">
+                        <span class="text-3xl text-sky-400">🎨</span>
+                        <p class="mt-1 text-sm font-medium">Karya Seni</p>
+                    </div>
+                    <div class="futuristic-card p-3 rounded-lg flex flex-col items-center">
+                        <span class="text-3xl text-sky-400">🕹️</span>
+                        <p class="mt-1 text-sm font-medium">Game Item</p>
+                    </div>
+                    <div class="futuristic-card p-3 rounded-lg flex flex-col items-center">
+                        <span class="text-3xl text-sky-400">🎵</span>
+                        <p class="mt-1 text-sm font-medium">Musik</p>
+                    </div>
+                    <div class="futuristic-card p-3 rounded-lg flex flex-col items-center">
+                        <span class="text-3xl text-sky-400">🌐</span>
+                        <p class="mt-1 text-sm font-medium">Metaverse</p>
+                    </div>
+                </div>
+
+                <!-- Tombol CTA yang mengarah ke halaman prototipe stego baru -->
+                <a href="stego_prototype.html" class="neon-button inline-block px-12 py-4 rounded-lg text-xl">
+                    Mulai Bertransaksi
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Minimalis -->
+    <footer class="bg-[#161b22] py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="divider max-w-xs mx-auto mb-6"></div>
+            <p class="text-gray-500 text-sm">
+                &copy; 2025 Private Link. Semua hak cipta dilindungi. | <span class="text-cyan-500">Blockchain Technology Pioneer.</span>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
